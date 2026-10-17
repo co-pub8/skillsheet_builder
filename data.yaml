@@ -1,0 +1,170 @@
+# ===============================================================
+#  スキルシート データファイル（サンプル）
+#  架空の人物のデータです。コピーして data.yaml を作成し、内容を書き換えてください。
+#    copy data.sample.yaml data.yaml
+#  日付は "YYYY-MM" 形式（例: 2019-04）。終了月が null なら「現在」扱い。
+# ===============================================================
+
+engineer_code: ENG0000000000
+affiliation: 株式会社サンプル
+
+# 期間の数え方
+#   inclusive : 開始月と終了月の両方を数える（4月～5月 = 2ヶ月）
+#   exclusive : 差分で数える（4月～5月 = 1ヶ月）
+duration_mode: inclusive
+
+# 職務要約（1行 = 1段落。Wordでの改行位置どおりに書けます）
+summary:
+  - 約8年にわたり、Webアプリケーションの開発に従事してまいりました。業務システムのバックエンド開発を中心に、
+  - フロントエンド開発やクラウド環境の構築・運用まで幅広く経験しております。
+  - Python、TypeScript、AWSを用いた開発を得意としております。
+
+# 職務経歴（新しい順）
+careers:
+  - { from: 2021-04, to: null,    org: 株式会社サンプル(正社員) }
+  - { from: 2018-04, to: 2021-03, org: テスト情報システム株式会社(正社員) }
+
+# 開発経歴（古い順に並べると、そのまま上から出力されます）
+#   duration: "1ヶ月" のように書くと自動計算を上書きできます
+#   tags: --tags オプションで絞り込むときに使います（任意）
+#   achievements は省略可（省略すると【実績・取り組み等】の欄ごと出力されません）
+projects:
+  - company: テスト情報システム株式会社 (正社員)
+    from: 2018-04
+    to: 2018-06
+    tags: [研修]
+    name: 新人研修(Java研修)
+    overview:
+      - 新入社員向けのプログラミング研修
+    work:
+      - Javaを用いた簡易的な在庫管理アプリの作成
+    env:
+      OS: [Windows]
+      言語: [Java]
+      DB: [MySQL]
+    role: 研修生
+    size: 要員10名
+    phases: [詳細設計, コーディング, 単体テスト]
+
+  - company: テスト情報システム株式会社 (正社員)
+    from: 2018-07
+    to: 2021-03
+    tags: [Web, 業務システム]
+    name: 物流会社向け 配送管理システムの開発・保守
+    overview:
+      - 配送状況を管理するWebシステムの新規開発および保守
+    work:
+      - 配送状況照会APIの開発(Python、Django)
+      - 管理画面の開発(JavaScript、jQuery)
+      - 帳票出力機能の開発(PDF/CSV)
+      - 障害対応・問い合わせ対応
+    achievements:
+      - ・手作業で行っていたリリース作業をシェルスクリプトで自動化し、作業時間を約半分に短縮しました。
+      - ・遅延していた検索処理のSQLを見直し、応答時間を改善しました。
+    env:
+      OS: [Linux, Windows]
+      言語: [Python, JavaScript, ShellScript]
+      FW: [Django, jQuery]
+      DB: [PostgreSQL]
+      その他: [Git, Redmine]
+    role: メンバー
+    size: 要員6名
+    phases: [詳細設計, コーディング, 単体テスト, 結合テスト, 運用保守]
+
+  - company: 株式会社サンプル (正社員)
+    from: 2021-04
+    to: 2023-09
+    tags: [Web, クラウド]
+    name: ECサイトのリニューアル
+    overview:
+      - 既存ECサイトのフルリニューアル(オンプレミス → AWS移行)
+    work:
+      - 商品検索・注文APIの設計、開発(Python、FastAPI)
+      - フロントエンドの開発(TypeScript、React)
+      - AWS環境の構築(ECS、RDS、S3、CloudFront)
+      - GitHub Actionsを用いたCI/CDの構築
+    achievements:
+      - ・Terraformを導入し、検証環境と本番環境の差異をなくしました。
+      - ・テストコードの整備を推進し、カバレッジを30%から80%に向上させました。
+    env:
+      OS: [Linux, macOS]
+      言語: [Python, TypeScript]
+      FW: [FastAPI, React]
+      DB: [MySQL, Redis]
+      その他: [AWS, Docker, Terraform, GitHub Actions, Jira & Confluence]
+    role: サブリーダー
+    size: 要員12名
+    phases: [要件定義, 基本設計, 詳細設計, コーディング, 単体テスト, 結合テスト]
+
+  - company: 株式会社サンプル (正社員)
+    from: 2023-10
+    to: null
+    tags: [Web, 業務システム, クラウド]
+    name: 社内向け 勤怠管理システムの開発
+    overview:
+      - 社内の勤怠管理をWeb化するシステムの開発
+    work:
+      - 要件のヒアリング、仕様の策定
+      - バックエンドAPIの開発(Python、FastAPI)
+      - メンバーのコードレビュー、進捗管理
+    env:
+      OS: [Linux]
+      言語: [Python, TypeScript]
+      FW: [FastAPI, Next.js]
+      DB: [PostgreSQL]
+      その他: [AWS, Docker, GitHub]
+    role: リーダー
+    size: 要員4名
+    phases: [要件定義, 基本設計, 詳細設計, コーディング, 単体テスト]
+
+# スキルレベル（work: 実務経験 / private: 実務以外。未経験は "-"）
+skills:
+  言語:
+    - { name: Python,      work: 7年,   private: 3年 }
+    - { name: TypeScript,  work: 3年,   private: 2年 }
+    - { name: JavaScript,  work: 5年,   private: 2年 }
+    - { name: Java,        work: 0.5年, private: "-" }
+    - { name: ShellScript, work: 4年,   private: 1年 }
+    - { name: Go,          work: "-",   private: 1年 }
+  FW:
+    - { name: Django,      work: 3年,   private: "-" }
+    - { name: FastAPI,     work: 4年,   private: 2年 }
+    - { name: React,       work: 2年,   private: 1年 }
+    - { name: Next.js,     work: 1年,   private: 1年 }
+  OS:
+    - { name: Linux,       work: 7年,   private: 3年 }
+    - { name: Windows,     work: 8年,   private: 10年以上 }
+    - { name: macOS,       work: 2年,   private: "-" }
+  DB:
+    - { name: PostgreSQL,  work: 5年,   private: 1年 }
+    - { name: MySQL,       work: 3年,   private: "-" }
+    - { name: Redis,       work: 2年,   private: "-" }
+  その他:
+    - { name: AWS,         work: 4年,   private: 1年 }
+    - { name: Docker,      work: 5年,   private: 3年 }
+    - { name: Terraform,   work: 2年,   private: "-" }
+    - { name: Git,         work: 8年,   private: 5年 }
+
+education:
+  date: 2018-03
+  text: 某私立大学 情報工学部 情報工学科 卒業
+
+licenses:
+  - { date: 2017-12, name: 基本情報技術者 }
+  - { date: 2020-06, name: 応用情報技術者 }
+  - { date: 2022-03, name: AWS Certified Solutions Architect - Associate }
+
+self_pr:
+  - title: 開発プロセスの改善
+    lines:
+      - CI/CDやテストコードの整備など、チーム全体の開発効率を上げる取り組みを積極的に行ってまいりました。
+      - 属人化していた作業を自動化し、誰でも同じ品質でリリースできる仕組みづくりを得意としております。
+  - title: 幅広い技術領域への対応
+    lines:
+      - バックエンドを中心に、フロントエンドやインフラまで一通りの経験があるため、システム全体を見渡した設計が可能です。
+      - 新しい技術にも関心が高く、業務外でも継続的に学習しております。
+
+private_dev:
+  - Goを用いたCLIツールの作成
+  - Next.jsを用いた個人ブログの作成・運用
+  - Raspberry Piを用いた自宅サーバの構築

@@ -1,0 +1,3 @@
+docxtpl>=0.20
+PyYAML>=6.0
+# PDF出力をWordで行う場合(Windows/Mac): docx2pdf
