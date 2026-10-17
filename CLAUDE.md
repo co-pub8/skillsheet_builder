@@ -17,9 +17,18 @@ python build.py --tags 通信,組込み       # タグが一致するプロジ�
 python build.py -d other.yaml -t tpl.docx -o out_dir
 ```
 
-テスト・リンターは未設定。動作確認は `python build.py -d data.sample.yaml --as-of 2026-10` のように生成し、出力 .docx を Word で開けるか確認する。
+テスト・リンターは未設定。動作確認は `python build.py --as-of 2026-10` のように生成し、出力 .docx を Word で開けるか確認する。
 
-`data.yaml` は本人の実際の経歴（個人情報）なので、例示・動作確認・共有には架空データの `data.sample.yaml` を使う。データ構造を変えたときは両方を更新する。
+`data.yaml` は架空人物の経歴が書かれている。サンプル用。
+
+## 開発ルール
+
+- ファイルの変更や追加を行う前に、作業ブランチを切ること。
+- 指示があるまでコミットしないこと。
+- `作業ブランチを切る -> 実装`を1タスクとする。
+- コミットは1タスク毎に行い、その都度コミットしてよいか確認すること。
+- ファイルやディレクトリ構成を変更した場合は、CLAUDE.md および `.claude` 配下に記載の該当箇所も変更する。
+- プルリクマージ後は、作業ブランチをローカル・リモート共に削除し、`main` ブランチを最新にする。
 
 ## 処理の流れ（build.py）
 
@@ -35,7 +44,7 @@ python build.py -d other.yaml -t tpl.docx -o out_dir
 
 - Jinja タグを書いてよいのは本文テキストと、段落/行単位の `{%p %}` / `{%tr %}`（`{%r %}` はラン単位）のみ。
 - `w:vMerge` や `w:jc` など **XML 属性値に `{% %}` / `{{ }}` を入れてはいけない**。Word が属性値を厳密に検証するため、ファイルが開けなくなる。属性に依存する処理は `postprocess()` 側で行う。
-- `w:tcPr` / `w:pPr` 内の子要素は OOXML スキーマの順序に従う必要がある（`_set_vmerge` / `_set_align` が挿入位置を調整しているのはこのため）。
+- `w:tcPr` / `w:pPr` 内の子要素は OOXML スキーマの順序に従う必要がある（`postprocess()` は python-docx の `CT_Tc.vMerge` / `CT_PPr.jc_val` で設定し、挿入位置の調整を任せている。XML を直接操作して要素を足す場合は順序に注意）。
 - Word で直接タグを打つとランが分割されタグが壊れるので、テキストエディタで書いてから一括で貼り付ける。
 
 ## tools/make_template.py
