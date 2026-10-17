@@ -222,3 +222,4 @@ __marimo__/
 # Other file
 _*.yaml
 output/
+*.local.md

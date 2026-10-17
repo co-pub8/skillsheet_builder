@@ -4,7 +4,7 @@
     pip install -r requirements.txt
 
 ## 使い方
-1. `data.yaml` を編集する（内容はここだけ。初めての場合は `data.sample.yaml` をコピーして作成）
+1. `data.yaml` を編集する（内容はここだけ。初期状態は架空人物のサンプルデータ）
 2. `python build.py --pdf` を実行
 3. `output/【技術者コード】スキルシート_YYYYMM.docx / .pdf` が出力される
 
